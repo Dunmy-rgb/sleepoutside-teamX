@@ -1,4 +1,10 @@
-export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = false) {
+export function renderListWithTemplate(
+  templateFn,
+  parentElement,
+  list,
+  position = "afterbegin",
+  clear = false,
+) {
   if (clear) parentElement.innerHTML = "";
 
   const html = list.map(templateFn).join("");

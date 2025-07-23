@@ -1,21 +1,23 @@
-import ProductDetails from "./ProductDetails.mjs";
-import ProductData from "./ProductData.mjs";
+export default class ProductDetails {
+  constructor(productId, dataSource) {
+    this.productId = productId;
+    this.dataSource = dataSource;
+  }
 
-function getProductIdFromURL() {
-  const params = new URLSearchParams(window.location.search);
-  return params.get("product");
+  async init() {
+    const product = await this.dataSource.findProductById(this.productId);
+    this.renderProductDetails(product);
+  }
+
+  renderProductDetails(product) {
+    const element = document.querySelector(".product-detail");
+    if (!element) return;
+
+    element.innerHTML = `
+      <h2>${product.Name}</h2>
+      <img src="${product.Image}" alt="${product.Name}">
+      <p>${product.Description}</p>
+      <p><strong>Price:</strong> $${product.FinalPrice}</p>
+    `;
+  }
 }
-
-function renderYear() {
-  document.getElementById("year").textContent = new Date().getFullYear();
-}
-
-const productId = getProductIdFromURL();
-
-if (productId) {
-  const dataSource = new ProductData("tents"); // Or another category if applicable
-  const product = new ProductDetails(productId, dataSource);
-  product.init();
-}
-
-renderYear();
