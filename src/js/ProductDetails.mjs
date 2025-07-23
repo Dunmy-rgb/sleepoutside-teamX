@@ -10,11 +10,11 @@ function renderYear() {
   document.getElementById("year").textContent = new Date().getFullYear();
 }
 
-const productId = getProductIdFromURL();
+const ProductId = getProductIdFromURL();
 
-if (productId) {
+if (ProductId) {
   const dataSource = new ProductData("tents"); // Or another category if applicable
-  const product = new ProductDetails(productId, dataSource);
+  const product = new ProductDetails(ProductId, dataSource);
   product.init();
 }
 
