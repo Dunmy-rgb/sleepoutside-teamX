@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout - Sleep Outside</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body>
+    <header id="main-header"></header>
+
+    <main>
+      <section class="checkout-section">
+        <h1>Checkout</h1>
+        <form id="checkout-form">
+          <fieldset>
+            <legend>Customer Information</legend>
+            <label>
+              Full Name:
+              <input type="text" name="fullName" required />
+            </label>
+            <label>
+              Email:
+              <input type="email" name="email" required />
+            </label>
+            <label>
+              Phone:
+              <input type="tel" name="phone" required />
+            </label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Shipping Address</legend>
+            <label>
+              Address:
+              <input type="text" name="address" required />
+            </label>
+            <label>
+              City:
+              <input type="text" name="city" required />
+            </label>
+            <label>
+              State:
+              <input type="text" name="state" required />
+            </label>
+            <label>
+              ZIP Code:
+              <input type="text" name="zip" required />
+            </label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Payment</legend>
+            <label>
+              Card Number:
+              <input type="text" name="card" required />
+            </label>
+            <label>
+              Expiry:
+              <input type="month" name="expiry" required />
+            </label>
+            <label>
+              CVV:
+              <input type="text" name="cvv" required />
+            </label>
+          </fieldset>
+
+          <button type="submit" class="checkout-btn">Complete Purchase</button>
+        </form>
+
+        <div class="order-summary">
+          <h2>Order Summary</h2>
+          <ul class="product-list"></ul>
+          <p class="order-total">Total: $<span id="orderTotal">0.00</span></p>
+        </div>
+      </section>
+    </main>
+
+    <footer id="main-footer"></footer>
+
+    <script type="module" src="./checkout.js"></script>
+  </body>
+</html>
