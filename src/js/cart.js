@@ -1,13 +1,11 @@
-import { getLocalStorage } from "./utils.mjs";
+import {
+  getCartContents,
+  calculateCartTotal,
+  countCartItems,
+} from "./cartUtils.mjs";
 
 function renderCartContents() {
-  let cartItems = getLocalStorage("so-cart");
-
-  // Ensure cartItems is always an array
-  if (!Array.isArray(cartItems)) {
-    cartItems = cartItems ? [cartItems] : [];
-  }
-
+  const cartItems = getCartContents();
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
 }
@@ -18,10 +16,7 @@ function cartItemTemplate(item) {
   return `
     <li class="cart-card divider">
       <a href="../product_pages/index.html?product=${item.Id}" class="cart-card__image">
-        <img
-          src="${item.Image}"
-          alt="${item.Name}"
-        />
+        <img src="${item.Image}" alt="${item.Name}" />
       </a>
       <a href="../product_pages/index.html?product=${item.Id}">
         <h2 class="card__name">${item.Name}</h2>
@@ -33,5 +28,16 @@ function cartItemTemplate(item) {
   `;
 }
 
-// Run the function on load
+function displayCartTotal() {
+  const total = calculateCartTotal();
+  document.querySelector(".cart-total").textContent = `$${total.toFixed(2)}`;
+}
+
+function displayCartCount() {
+  const count = countCartItems();
+  document.querySelector(".cart-count").textContent = `${count}`;
+}
+
 renderCartContents();
+displayCartTotal();
+displayCartCount();
